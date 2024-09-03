@@ -1,0 +1,16 @@
+.bg-container {
+    background: #F4F1F3;
+    border-radius: 5px;
+    max-width: 736px;
+}
+
+.text-danger {
+    font-size: 11px;
+}
+
+.form-label {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    color: #02111B;
+}
