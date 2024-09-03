@@ -12,6 +12,8 @@ import { EventEmitterService } from 'src/event-emitter.service';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './pages/navbar/navbar.component';
+import { TreeOlympiadRegistrationComponent } from './pages/tree-olympiad-registration/tree-olympiad-registration.component';
+import { DeyalpotrikaRegistrationComponent } from './pages/deyalpotrika-registration/deyalpotrika-registration.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
     AppComponent,
     HomeComponent,
     NavbarComponent,
+    TreeOlympiadRegistrationComponent,
+    DeyalpotrikaRegistrationComponent,
   ],
   imports: [
     BrowserModule,
