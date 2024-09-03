@@ -1,0 +1,45 @@
+.card-icon {
+    font-size: 4rem;
+    color: #28a745; /* Adjust for tree icon */
+}
+
+.card-icon-potrika {
+    font-size: 4rem;
+    color: #ffc107; /* Adjust for tree icon */
+}
+  
+  .tree-card {
+    background-color: #e9f7ef; /* Light green background */
+    border: none;
+    border-radius: 15px;
+  }
+  
+  .deyalpotrika-card {
+    background-color: #fff7e6; /* Light orange background */
+    border: none;
+    border-radius: 15px;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+  }
+  
+  .btn-warning {
+    background-color: #ffc107;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }

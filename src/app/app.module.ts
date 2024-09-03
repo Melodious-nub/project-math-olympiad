@@ -10,12 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { EventEmitterService } from 'src/event-emitter.service';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavbarComponent } from './pages/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { ToastrModule } from 'ngx-toastr';
       countDuplicates: true,
       resetTimeoutOnDuplicate: true,
     }),
+      NgbModule,
   ],
   providers: [
     HttpClient,
