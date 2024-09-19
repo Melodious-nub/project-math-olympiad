@@ -21,7 +21,7 @@ export class TreeOlympiadRegistrationComponent implements OnInit {
     this.errorMessage = ''; // Clear any previous errors
   
     // Call the API to submit the registration data
-    this.dataService.postDeyalReg(registrationFormData).subscribe({
+    this.dataService.postBrikhoReg(registrationFormData).subscribe({
       next: (res) => {
         this.isLoading = false; // Stop loading state
         
