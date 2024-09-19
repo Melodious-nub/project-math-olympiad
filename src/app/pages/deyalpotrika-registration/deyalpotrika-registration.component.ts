@@ -32,8 +32,8 @@ export class DeyalpotrikaRegistrationComponent implements OnInit {
       },
       error: (error) => {
         this.isLoading = false; // Hide loading state
-        this.errorMessage = 'Registration failed. Please try again.'; // Show error message
-        console.error('Registration failed:', error);
+        this.errorMessage = 'An unexpected error occurred. Please try again.'; // Show error message
+        // console.error('Registration failed:', error);
       }
     });
   }

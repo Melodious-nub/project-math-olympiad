@@ -21,23 +21,23 @@ export class TreeOlympiadRegistrationComponent implements OnInit {
     this.errorMessage = ''; // Clear any previous errors
   
     // Call the API to submit the registration data
-    this.dataService.postBrikhoReg(registrationFormData).subscribe({
+    this.dataService.postDeyalReg(registrationFormData).subscribe({
       next: (res) => {
         this.isLoading = false; // Stop loading state
         
         // Check if the response indicates success
         if (res && res.success) {
           this.isSuccess = true; // Show success message
-          console.log('Registration successful:', res);
+          // console.log('Registration successful:', res);
         } else {
           // Handle case where the response does not indicate success
-          this.errorMessage = res.message || 'Registration failed. Please try again.';
+          this.errorMessage = 'Registration failed. Please try again.';
           // console.warn('Unexpected response:', res);
         }
       },
       error: (error) => {
         this.isLoading = false; // Stop loading state
-        this.errorMessage = error.message || 'An unexpected error occurred. Please try again.'; // Set error message
+        this.errorMessage = 'An unexpected error occurred. Please try again.'; // Set error message
         // console.error('API error during registration:', error);
       }
     });
