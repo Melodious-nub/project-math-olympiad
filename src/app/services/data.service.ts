@@ -16,7 +16,7 @@ export class DataService {
   }
 
   postDeyalReg(data:any) {
-    return this.http.post<any>(environment.baseUrl+'/api/v1/DeyalpotrikaRegistration', data);
+    return this.http.post<any>(environment.baseUrl+'/api/v1/DeyalPotrikaRegistration', data);
   }
 
 }

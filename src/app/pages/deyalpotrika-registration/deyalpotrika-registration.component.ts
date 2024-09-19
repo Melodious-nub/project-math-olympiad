@@ -26,6 +26,7 @@ export class DeyalpotrikaRegistrationComponent implements OnInit {
         this.isLoading = false; // Hide loading state
         if (res.success) {
           this.isSuccess = true; // Show success message
+          console.log(res);
         } else {
           this.errorMessage = 'Registration failed. Please try again.';
         }
