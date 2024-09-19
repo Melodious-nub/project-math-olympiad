@@ -11,8 +11,12 @@ export class DataService {
 
 
   // api data seervice
-  postSuggection(data:any) {
-    return this.http.post<any>(environment.baseUrl+'/api/v1/Suggection', data);
+  postBrikhoReg(data:any) {
+    return this.http.post<any>(environment.baseUrl+'/api/v1/BrikhoRegistration', data);
+  }
+
+  postDeyalReg(data:any) {
+    return this.http.post<any>(environment.baseUrl+'/api/v1/DeyalpotrikaRegistration', data);
   }
 
 }

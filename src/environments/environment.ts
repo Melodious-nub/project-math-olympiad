@@ -4,12 +4,7 @@
 
 export const environment = {
   production: false,
-
-//  baseUrl: 'http://192.168.5.13:8012',
-    // baseUrl: 'https://livecomboxapi.azurewebsites.net',
- baseUrl: 'https://devcomboxapi.azurewebsites.net',
-// baseUrl: 'https://localhost:5001',
- 
+  baseUrl: 'https://olympiadapilive-dcb3djbnbsbdbqc0.canadacentral-01.azurewebsites.net',
 
 };
 
