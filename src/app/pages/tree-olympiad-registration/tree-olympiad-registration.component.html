@@ -79,9 +79,9 @@
 
         <!-- WhatsApp Number Field -->
         <div class="mb-2 col-md-6">
-          <label for="whatsappNo" class="form-label">WhatsApp No.</label>
-          <input type="tel" id="whatsappNo" class="form-control form-control-sm" [ngClass]="{'is-invalid': !whatsappNo.valid && whatsappNo.touched}" name="whatsappNo" ngModel required #whatsappNo="ngModel">
-          <div *ngIf="!whatsappNo.valid && whatsappNo.touched" class="text-danger">
+          <label for="whatsApp" class="form-label">WhatsApp No.</label>
+          <input type="tel" id="whatsApp" class="form-control form-control-sm" [ngClass]="{'is-invalid': !whatsApp.valid && whatsApp.touched}" name="whatsApp" ngModel required #whatsApp="ngModel">
+          <div *ngIf="!whatsApp.valid && whatsApp.touched" class="text-danger">
             WhatsApp number is required.
           </div>
         </div>

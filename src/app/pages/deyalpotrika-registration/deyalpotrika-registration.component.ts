@@ -18,7 +18,7 @@ export class DeyalpotrikaRegistrationComponent implements OnInit {
   onSubmit(detalRegistrationForm: any) {
     this.isLoading = true; // Show loading state
     this.errorMessage = ''; // Reset error message
-    console.log(detalRegistrationForm);
+    // console.log(detalRegistrationForm);
 
     // Call the API to post data
     this.dataService.postDeyalReg(detalRegistrationForm).subscribe({
@@ -26,7 +26,7 @@ export class DeyalpotrikaRegistrationComponent implements OnInit {
         this.isLoading = false; // Hide loading state
         if (res.success) {
           this.isSuccess = true; // Show success message
-          console.log(res);
+          // console.log(res);
         } else {
           this.errorMessage = 'Registration failed. Please try again.';
         }
