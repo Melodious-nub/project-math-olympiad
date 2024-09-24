@@ -1,1 +1,126 @@
-<p>deyal works!</p>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between mb-3">
+      <h5>Manage Deyal Registration</h5>
+      <button class="btn btn-sm btn-secondary" style="padding: 2px 10px; font-size: 11px;" (click)="refreshData()">Refresh</button>
+  </div>
+  
+  <div class="table-responsive-xxl" style="overflow: auto;">
+      <table class="table table-hover align-middle table-sm text-center">
+          <thead>
+            <tr>
+              <th>Potrika Name</th>
+              <th>District</th>
+              <th>Category</th>
+              <th>Volunteer Code</th>
+              <th>Volunteer Name</th>
+              <th>Leader Name</th>
+              <th>Leader Number</th>
+              <th>WhatsApp Number</th>
+              <th>Email</th>
+              <th>Pay Status</th>
+              <th>Transaction ID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of paginatedData">
+              <td>{{ item.potrikaName }}</td>
+              <td>{{ item.district }}</td>
+              <td>{{ item.category }}</td>
+              <td>{{ item.volunteerCode }}</td>
+              <td>{{ item.volunteerName }}</td>
+              <td>{{ item.leaderName }}</td>
+              <td>{{ item.leaderNumber }}</td>
+              <td>{{ item.whatsAppNumber }}</td>
+              <td>{{ item.email }}</td>
+              <td>
+                  <span *ngIf="item.isPaymentDone" class="badge bg-success">Paid</span>
+                  <span *ngIf="!item.isPaymentDone" class="badge bg-danger">Not paid</span>
+              </td>
+              <td>
+                  <span *ngIf="item.transactionId !== null">{{ item.transactionId }}</span>
+                  <span *ngIf="item.transactionId === null">Not available</span>
+              </td>
+              <td>
+                <button class="btn btn-warning btn-sm" style="padding: 2px 10px; font-size: 11px;" data-bs-toggle="modal" data-bs-target="#editDeyal" (click)="openEditModal(item)">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="!paginatedData.length && notificationMessage" class="alert alert-warning" role="alert">
+          {{ notificationMessage }}
+        </div>
+  </div>
+
+  <div class="pagination">
+      <button class="btn btn-primary btn-sm me-2" style="padding: 2px 10px; font-size: 11px;" (click)="previousPage()" [disabled]="PageNumber === 0">Previous</button>
+      <button class="btn btn-primary btn-sm" style="padding: 2px 10px; font-size: 11px;" (click)="nextPage()" [disabled]="PageNumber !== 0 && notificationMessage">Next</button>
+  </div>
+</div>
+
+<!-- Edit Deyal Modal -->
+<div class="modal fade" id="editDeyal" tabindex="-1" aria-labelledby="editDeyalLabel" aria-hidden="true" data-bs-backdrop="false">
+<div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="editDeyalLabel">Edit Deyal Registration</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form class="row justify-content-start px-5">
+        <div class="col-lg-6 mb-1">
+          <label for="potrikaName" class="form-label">Potrika Name</label>
+          <input [(ngModel)]="selectedDeyal.potrikaName" name="potrikaName" type="text" class="form-control form-control-sm" id="potrikaName">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="district" class="form-label">District</label>
+          <input [(ngModel)]="selectedDeyal.district" name="district" type="text" class="form-control form-control-sm" id="district">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="category" class="form-label">Category</label>
+          <input [(ngModel)]="selectedDeyal.category" name="category" type="text" class="form-control form-control-sm" id="category">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="volunteerCode" class="form-label">Volunteer Code</label>
+          <input [(ngModel)]="selectedDeyal.volunteerCode" name="volunteerCode" type="text" class="form-control form-control-sm" id="volunteerCode">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="volunteerName" class="form-label">Volunteer Name</label>
+          <input [(ngModel)]="selectedDeyal.volunteerName" name="volunteerName" type="text" class="form-control form-control-sm" id="volunteerName">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="leaderName" class="form-label">Leader Name</label>
+          <input [(ngModel)]="selectedDeyal.leaderName" name="leaderName" type="text" class="form-control form-control-sm" id="leaderName">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="leaderNumber" class="form-label">Leader Number</label>
+          <input [(ngModel)]="selectedDeyal.leaderNumber" name="leaderNumber" type="text" class="form-control form-control-sm" id="leaderNumber">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="whatsAppNumber" class="form-label">WhatsApp Number</label>
+          <input [(ngModel)]="selectedDeyal.whatsAppNumber" name="whatsAppNumber" type="text" class="form-control form-control-sm" id="whatsAppNumber">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="email" class="form-label">Email</label>
+          <input [(ngModel)]="selectedDeyal.email" name="email" type="email" class="form-control form-control-sm" id="email">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="isPaymentDone" class="form-label">Payment Status</label>
+          <select [(ngModel)]="selectedDeyal.isPaymentDone" name="isPaymentDone" class="form-control form-control-sm" id="isPaymentDone">
+            <option [ngValue]="true">Paid</option>
+            <option [ngValue]="false">Not Paid</option>
+          </select>
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="transactionId" class="form-label">Transaction ID</label>
+          <input [(ngModel)]="selectedDeyal.transactionId" name="transactionId" type="text" class="form-control form-control-sm" id="transactionId">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-sm btn-success" (click)="updateDeyal()" data-bs-dismiss="modal">Update</button>
+    </div>
+  </div>
+</div>
+</div>

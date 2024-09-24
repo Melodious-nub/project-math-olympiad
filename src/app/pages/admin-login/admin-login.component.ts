@@ -21,15 +21,20 @@ export class AdminLoginComponent implements OnInit {
     this.isLoading = true;
     this.authService.login(form).subscribe(
       (response) => {
-        console.log(form, response);
+        if (response.success) {
+          // console.log(form, response);
         this.isLoading = false;
         // Store token in localStorage
         localStorage.setItem('token', response.data.token);
         this.router.navigate(['/admin/manage-brikkho']); // Redirect to admin page after successful login
+        } else {
+          this.isLoading = false;
+          this.errorMessage = 'Invalid email or password';
+        }
       },
       (error) => {
         this.isLoading = false;
-        this.errorMessage = 'Invalid email or password';
+        this.errorMessage = 'Server error.';
       }
     );
   }

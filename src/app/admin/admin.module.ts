@@ -6,6 +6,7 @@ import { AppAdminComponent } from './app-admin/app-admin.component';
 import { BrikkhoComponent } from './brikkho/brikkho.component';
 import { DeyalComponent } from './deyal/deyal.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
   ]
 })
 export class AdminModule { }
