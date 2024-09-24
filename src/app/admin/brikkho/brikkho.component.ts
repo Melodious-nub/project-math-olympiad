@@ -67,15 +67,14 @@ export class BrikkhoComponent implements OnInit {
       name: this.selectedBrikkho.name, schoolName: this.selectedBrikkho.schoolName, district: this.selectedBrikkho.district, volunteerCode: this.selectedBrikkho.volunteerCode, volunteerName: this.selectedBrikkho.volunteerName, email: this.selectedBrikkho.email, whatsApp: this.selectedBrikkho.whatsApp, category: this.selectedBrikkho.category, isPaymentDone: this.selectedBrikkho.isPaymentDone, transactionId: this.selectedBrikkho.transactionId
     }
 
-    console.log(this.selectedBrikkho.id, this.selectedBrikkho.id, model);
-
     this.api.updateBrikkho(this.selectedBrikkho.id, model).subscribe(
       response => {
+        console.log(this.selectedBrikkho.id, model);
         if (response.success) {
           // this.notificationMessage = "Brikkho updated successfully!";
           this.toastr.success(response.message);
-          this.refreshData();
-          this.selectedBrikkho = null; // Reset after update
+          this.fetchData(this.PageNumber, this.pageSize);
+          // this.selectedBrikkho = null; // Reset after update
         } else {
           // this.notificationMessage = "Update failed!";
           this.toastr.warning(response.message);

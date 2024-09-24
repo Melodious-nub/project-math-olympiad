@@ -29,12 +29,12 @@ export class DataService {
   }
 
   updateBrikkho(id: string, data: any): Observable<any> {
-    const url = `${environment.baseUrl}/api/v1/BrikhoRegistration/${id}`; // Construct the URL with the ID
+    const url = `${environment.baseUrl}/api/v1/BrikhoRegistration/update/${id}`; // Construct the URL with the ID
     return this.http.put<any>(url, data);
   }
 
   updateDeyal(id: string, data: any): Observable<any> {
-    const url = `${environment.baseUrl}/api/v1/DeyalPotrikaRegistration/${id}`; // Construct the URL with the ID
+    const url = `${environment.baseUrl}/api/v1/DeyalPotrikaRegistration/update/${id}`; // Construct the URL with the ID
     return this.http.put<any>(url, data);
   }
 

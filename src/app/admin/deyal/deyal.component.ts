@@ -96,15 +96,14 @@ export class DeyalComponent implements OnInit {
       transactionId: this.selectedDeyal.transactionId
     };
   
-    console.log(this.selectedDeyal.id, model);
-  
     this.api.updateDeyal(this.selectedDeyal.id, model).subscribe(
       response => {
+        console.log(this.selectedDeyal.id, model);
         if (response.success) {
           // this.notificationMessage = "Deyal updated successfully!";
           this.toastr.success(response.message);
-          this.refreshData();
-          this.selectedDeyal = null; // Reset after update
+          this.fetchData(this.PageNumber, this.pageSize);
+          // this.selectedDeyal = null; // Reset after update
         } else {
           // this.notificationMessage = "Update failed!";
           this.toastr.warning(response.message);
