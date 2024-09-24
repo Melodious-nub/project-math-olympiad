@@ -1,8 +1,13 @@
 <nav class="navbar navbar-expand-lg bg-success" data-bs-theme="dark">
-    <div class="container">
-      <a class="navbar-brand" href="">
-        <img src="../../../assets/images/10237112.png" alt="tree-logo" width="30" height="24" class="d-inline-block align-text-top">
-        Olympiad
-      </a>
+  <div class="container-fluid" style="width: 95%;">
+    <a class="navbar-brand" routerLink="">
+      <img src="../../../assets/images/10237112.png" alt="tree-logo" width="30" height="24" class="d-inline-block align-text-top">
+      Olympiad
+    </a>
+
+    <!-- Conditionally show the Admin Login button only on the landing page -->
+    <div class="ms-auto" *ngIf="isLandingPage()">
+      <a class="btn btn-sm btn-light" routerLink="login">Admin Login</a>
     </div>
+  </div>
 </nav>

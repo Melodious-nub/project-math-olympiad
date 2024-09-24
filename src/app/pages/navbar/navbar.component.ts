@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
+    this.isLandingPage;
   }
 
+  // Method to check if the current route is the landing page
+  isLandingPage(): boolean {
+    return this.router.url === '/'; // Adjust this based on your landing page route
+  }
 }

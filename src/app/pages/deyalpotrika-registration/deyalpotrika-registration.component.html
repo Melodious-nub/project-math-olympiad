@@ -1,119 +1,143 @@
+<app-navbar></app-navbar>
 <div class="container mt-4">
-    <div class="bg-container mb-3 mx-auto">
-      <div class="px-5 py-4">
-        <h2 class="text-center mb-4" style="font-size: x-large;">Deyalpotrika Registration Form</h2>
-        
-        <!-- Success message display -->
-        <div *ngIf="isSuccess" class="alert alert-success text-center" role="alert">
-            Deyalpotrika registration successful! Thank you for registering.
-        </div>
-  
-        <!-- Back to Home button after success -->
-        <div *ngIf="isSuccess" class="text-center mt-3">
-          <a routerLink="/" class="btn btn-sm btn-success">Back to Home</a>
-        </div>
-  
-        <!-- Error message display -->
-        <div *ngIf="errorMessage" class="alert alert-danger text-center" role="alert">
-          {{ errorMessage }}
-        </div>
-  
-        <!-- Registration Form (hidden when success is true) -->
-        <form *ngIf="!isSuccess" class="row" #detalRegistrationForm="ngForm" (ngSubmit)="onSubmit(detalRegistrationForm.value)">
-          
-          <!-- Potrika Name Field -->
-          <div class="mb-2 col-md-6">
-            <label for="potrikaName" class="form-label">Potrika Name</label>
-            <input type="text" id="potrikaName" class="form-control form-control-sm" [ngClass]="{'is-invalid': !potrikaName.valid && potrikaName.touched}" name="potrikaName" ngModel required #potrikaName="ngModel">
-            <div *ngIf="!potrikaName.valid && potrikaName.touched" class="text-danger">
-              Potrika name is required.
-            </div>
-          </div>
-  
-          <!-- District Select Box -->
-          <div class="mb-2 col-md-6">
-            <label for="district" class="form-label">District</label>
-            <select id="district" class="form-select form-select-sm" [ngClass]="{'is-invalid': !district.valid && district.touched}" name="district" ngModel required #district="ngModel">
-              <option value="" disabled selected>Select District</option>
-              <option value="Rangpur">Rangpur</option>
-              <option value="Dinajpur">Dinajpur</option>
-              <option value="Nilphamari">Nilphamari</option>
-              <option value="Gaibandha">Gaibandha</option>
-              <option value="Panchagarh">Panchagarh</option>
-            </select>
-            <div *ngIf="!district.valid && district.touched" class="text-danger">
-              District is required.
-            </div>
-          </div>
-  
-          <!-- Category Select Box -->
-          <div class="mb-2 col-md-6">
-            <label for="category" class="form-label">Category</label>
-            <select id="category" class="form-select form-select-sm" [ngClass]="{'is-invalid': !category.valid && category.touched}" name="category" ngModel required #category="ngModel">
-              <option value="" disabled selected>Select Category</option>
-              <option value="3-5">3-5</option>
-              <option value="6-8">6-8</option>
-              <option value="9-10">9-10</option>
-            </select>
-            <div *ngIf="!category.valid && category.touched" class="text-danger">
-              Category is required.
-            </div>
-          </div>
-  
-          <!-- Volunteer Code Field -->
-          <div class="mb-2 col-md-6">
-            <label for="volunteerCode" class="form-label">Volunteer Code</label>
-            <input type="text" id="volunteerCode" class="form-control form-control-sm" [ngClass]="{'is-invalid': !volunteerCode.valid && volunteerCode.touched}" name="volunteerCode" ngModel required #volunteerCode="ngModel">
-            <div *ngIf="!volunteerCode.valid && volunteerCode.touched" class="text-danger">
-              Volunteer Code is required.
-            </div>
-          </div>
-  
-          <!-- Leader Name Field -->
-          <div class="mb-2 col-md-6">
-            <label for="leaderName" class="form-label">Leader Name</label>
-            <input type="text" id="leaderName" class="form-control form-control-sm" [ngClass]="{'is-invalid': !leaderName.valid && leaderName.touched}" name="leaderName" ngModel required #leaderName="ngModel">
-            <div *ngIf="!leaderName.valid && leaderName.touched" class="text-danger">
-              Leader name is required.
-            </div>
-          </div>
-  
-          <!-- Leader Number Field -->
-          <div class="mb-2 col-md-6">
-            <label for="leaderNumber" class="form-label">Leader Number</label>
-            <input type="text" id="leaderNumber" class="form-control form-control-sm" [ngClass]="{'is-invalid': !leaderNumber.valid && leaderNumber.touched}" name="leaderNumber" ngModel required #leaderNumber="ngModel">
-            <div *ngIf="!leaderNumber.valid && leaderNumber.touched" class="text-danger">
-              Leader number is required.
-            </div>
-          </div>
-  
-          <!-- WhatsApp Number Field -->
-          <div class="mb-2 col-md-6">
-            <label for="whatsAppNumber" class="form-label">WhatsApp No.</label>
-            <input type="tel" id="whatsAppNumber" class="form-control form-control-sm" [ngClass]="{'is-invalid': !whatsAppNumber.valid && whatsAppNumber.touched}" name="whatsAppNumber" ngModel required #whatsAppNumber="ngModel">
-            <div *ngIf="!whatsAppNumber.valid && whatsAppNumber.touched" class="text-danger">
-              WhatsApp number is required.
-            </div>
-          </div>
-  
-          <!-- Email Field -->
-          <div class="mb-2 col-md-6">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" class="form-control form-control-sm" [ngClass]="{'is-invalid': !email.valid && email.touched}" name="email" ngModel required email #email="ngModel">
-            <div *ngIf="!email.valid && email.touched" class="text-danger">
-              Valid email is required.
-            </div>
-          </div>
-  
-          <!-- Submit Button -->
-          <div class="d-grid gap-2 mt-2">
-            <button type="submit" class="btn btn-sm btn-success" [disabled]="detalRegistrationForm.invalid || isLoading">
-              <!-- Show loading spinner if form is submitting -->
-              <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Submit
-            </button>
-          </div>
-        </form>
+  <div class="bg-container mb-3 mx-auto">
+    <div class="px-5 py-4">
+      <h2 class="text-center mb-4" style="font-size: x-large;">Deyalpotrika Registration Form</h2>
+      
+      <!-- Success message display -->
+      <div *ngIf="isSuccess" class="alert alert-success text-center" role="alert">
+          Deyalpotrika registration successful! Thank you for registering.
       </div>
+
+      <!-- Payment instructions after success -->
+      <div *ngIf="isSuccess" class="text-center mt-4">
+        <h5>Next Step: Payment</h5>
+        <p class="mt-2">To complete your registration, please proceed to payment through bKash.</p>
+        <p><strong>Amount: BDT 130</strong></p>
+        <p>Click the button below to pay using bKash.</p>
+        <p class="mt-2 text-danger"><strong>Important:</strong> Make sure to complete the payment to confirm your registration.</p>
+
+        <!-- Pay button -->
+        <a href="https://shop.bkash.com/rose-garden01772659356/pay/bdt130/EdfhaR" target="_blank" class="btn btn-sm btn-primary">
+          Proceed to bKash Payment
+        </a>
+      </div>
+
+      <!-- Back to Home button after success -->
+      <div *ngIf="isSuccess" class="text-center mt-3">
+        <a routerLink="/" class="btn btn-sm btn-success">Back to Home</a>
+      </div>
+
+      <!-- Error message display -->
+      <div *ngIf="errorMessage" class="alert alert-danger text-center" role="alert">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Registration Form (hidden when success is true) -->
+      <form *ngIf="!isSuccess" class="row" #detalRegistrationForm="ngForm" (ngSubmit)="onSubmit(detalRegistrationForm.value)">
+        
+        <!-- Potrika Name Field -->
+        <div class="mb-2 col-md-6">
+          <label for="potrikaName" class="form-label">Potrika Name</label>
+          <input type="text" id="potrikaName" class="form-control form-control-sm" [ngClass]="{'is-invalid': !potrikaName.valid && potrikaName.touched}" name="potrikaName" ngModel required #potrikaName="ngModel">
+          <div *ngIf="!potrikaName.valid && potrikaName.touched" class="text-danger">
+            Potrika name is required.
+          </div>
+        </div>
+
+        <!-- District Select Box -->
+        <div class="mb-2 col-md-6">
+          <label for="district" class="form-label">District</label>
+          <select id="district" class="form-select form-select-sm" [ngClass]="{'is-invalid': !district.valid && district.touched}" name="district" ngModel required #district="ngModel">
+            <option value="" disabled selected>Select District</option>
+            <option value="Rangpur">Rangpur</option>
+            <option value="Dinajpur">Dinajpur</option>
+            <option value="Nilphamari">Nilphamari</option>
+            <option value="Gaibandha">Gaibandha</option>
+            <option value="Panchagarh">Panchagarh</option>
+          </select>
+          <div *ngIf="!district.valid && district.touched" class="text-danger">
+            District is required.
+          </div>
+        </div>
+
+        <!-- Category Select Box -->
+        <div class="mb-2 col-md-6">
+          <label for="category" class="form-label">Category</label>
+          <select id="category" class="form-select form-select-sm" [ngClass]="{'is-invalid': !category.valid && category.touched}" name="category" ngModel required #category="ngModel">
+            <option value="" disabled selected>Select Category</option>
+            <option value="3-5">3-5</option>
+            <option value="6-8">6-8</option>
+            <option value="9-10">9-10</option>
+          </select>
+          <div *ngIf="!category.valid && category.touched" class="text-danger">
+            Category is required.
+          </div>
+        </div>
+
+        <!-- Volunteer Name Field -->
+        <div class="mb-2 col-md-6">
+          <label for="volunteerName" class="form-label">Volunteer Name</label>
+          <input type="text" id="volunteerName" class="form-control form-control-sm" [ngClass]="{'is-invalid': !volunteerName.valid && volunteerName.touched}" name="volunteerName" ngModel required #volunteerName="ngModel">
+          <div *ngIf="!volunteerName.valid && volunteerName.touched" class="text-danger">
+            Volunteer Name is required.
+          </div>
+        </div>
+
+        <!-- Volunteer Code Field -->
+        <div class="mb-2 col-md-6">
+          <label for="volunteerCode" class="form-label">Volunteer Code</label>
+          <input type="text" id="volunteerCode" class="form-control form-control-sm" [ngClass]="{'is-invalid': !volunteerCode.valid && volunteerCode.touched}" name="volunteerCode" ngModel required #volunteerCode="ngModel">
+          <div *ngIf="!volunteerCode.valid && volunteerCode.touched" class="text-danger">
+            Volunteer Code is required.
+          </div>
+        </div>
+
+        <!-- Leader Name Field -->
+        <div class="mb-2 col-md-6">
+          <label for="leaderName" class="form-label">Leader Name</label>
+          <input type="text" id="leaderName" class="form-control form-control-sm" [ngClass]="{'is-invalid': !leaderName.valid && leaderName.touched}" name="leaderName" ngModel required #leaderName="ngModel">
+          <div *ngIf="!leaderName.valid && leaderName.touched" class="text-danger">
+            Leader name is required.
+          </div>
+        </div>
+
+        <!-- Leader Number Field -->
+        <div class="mb-2 col-md-6">
+          <label for="leaderNumber" class="form-label">Leader Number</label>
+          <input type="text" id="leaderNumber" class="form-control form-control-sm" [ngClass]="{'is-invalid': !leaderNumber.valid && leaderNumber.touched}" name="leaderNumber" ngModel required #leaderNumber="ngModel">
+          <div *ngIf="!leaderNumber.valid && leaderNumber.touched" class="text-danger">
+            Leader number is required.
+          </div>
+        </div>
+
+        <!-- WhatsApp Number Field -->
+        <div class="mb-2 col-md-6">
+          <label for="whatsAppNumber" class="form-label">WhatsApp No.</label>
+          <input type="tel" id="whatsAppNumber" class="form-control form-control-sm" [ngClass]="{'is-invalid': !whatsAppNumber.valid && whatsAppNumber.touched}" name="whatsAppNumber" ngModel required #whatsAppNumber="ngModel">
+          <div *ngIf="!whatsAppNumber.valid && whatsAppNumber.touched" class="text-danger">
+            WhatsApp number is required.
+          </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="mb-2 col-md-12">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" class="form-control form-control-sm" [ngClass]="{'is-invalid': !email.valid && email.touched}" name="email" ngModel required email #email="ngModel">
+          <div *ngIf="!email.valid && email.touched" class="text-danger">
+            Valid email is required.
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="d-grid gap-2 mt-2">
+          <button type="submit" class="btn btn-sm btn-success" [disabled]="detalRegistrationForm.invalid || isLoading">
+            <!-- Show loading spinner if form is submitting -->
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
-  </div>  
+  </div>
+</div>

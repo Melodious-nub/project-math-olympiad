@@ -14,6 +14,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { TreeOlympiadRegistrationComponent } from './pages/tree-olympiad-registration/tree-olympiad-registration.component';
 import { DeyalpotrikaRegistrationComponent } from './pages/deyalpotrika-registration/deyalpotrika-registration.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { AuthService } from './services/auth.service';
+import { HttpInterceptorInterceptor } from './services/http-interceptor.interceptor';
 
 
 @NgModule({
@@ -23,6 +26,7 @@ import { DeyalpotrikaRegistrationComponent } from './pages/deyalpotrika-registra
     NavbarComponent,
     TreeOlympiadRegistrationComponent,
     DeyalpotrikaRegistrationComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ import { DeyalpotrikaRegistrationComponent } from './pages/deyalpotrika-registra
     EventEmitterService,
    { provide: LocationStrategy, useClass: HashLocationStrategy },
    { provide: LocationStrategy, useClass: PathLocationStrategy },
+    AuthService,
+  { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

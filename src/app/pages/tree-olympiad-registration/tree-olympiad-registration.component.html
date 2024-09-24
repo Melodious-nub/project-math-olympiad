@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="container mt-4">
   <div class="bg-container mb-3 mx-auto">
     <div class="px-5 py-4">
@@ -6,6 +7,20 @@
       <!-- Success message display -->
       <div *ngIf="isSuccess" class="alert alert-success text-center" role="alert">
         Registration successful! Thank you for registering.
+      </div>
+
+      <!-- Payment instructions after success -->
+      <div *ngIf="isSuccess" class="text-center mt-4">
+        <h5>Next Step: Payment</h5>
+        <p class="mt-2">To complete your registration, please proceed to payment through bKash.</p>
+        <p><strong>Amount: BDT 130</strong></p>
+        <p>Click the button below to pay using bKash.</p>
+        <p class="mt-2 text-danger"><strong>Important:</strong> Make sure to complete the payment to confirm your registration.</p>
+        
+        <!-- Pay button -->
+        <a href="https://shop.bkash.com/rose-garden01772659356/pay/bdt130/EdfhaR" target="_blank" class="btn btn-sm btn-primary">
+          Proceed to bKash Payment
+        </a>
       </div>
 
       <!-- Back to Home button after success -->
@@ -68,6 +83,16 @@
           </div>
         </div>
 
+        <!-- Volunteer Name Field -->
+        <div class="mb-2 col-md-6">
+          <label for="volunteerName" class="form-label">Volunteer Name</label>
+          <input type="text" id="volunteerName" class="form-control form-control-sm" [ngClass]="{'is-invalid': !volunteerName.valid && volunteerName.touched}" name="volunteerName" ngModel required #volunteerName="ngModel">
+          <div *ngIf="!volunteerName.valid && volunteerName.touched" class="text-danger">
+            Volunteer Name is required.
+          </div>
+        </div>
+
+
         <!-- Volunteer Code Field -->
         <div class="mb-2 col-md-6">
           <label for="volunteerCode" class="form-label">Volunteer Code</label>
@@ -87,7 +112,7 @@
         </div>
 
         <!-- Email Field -->
-        <div class="mb-2 col-md-12">
+        <div class="mb-2 col-md-6">
           <label for="email" class="form-label">Email</label>
           <input type="email" id="email" class="form-control form-control-sm" [ngClass]="{'is-invalid': !email.valid && email.touched}" name="email" ngModel required email #email="ngModel">
           <div *ngIf="!email.valid && email.touched" class="text-danger">
