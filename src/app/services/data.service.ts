@@ -38,4 +38,12 @@ export class DataService {
     return this.http.put<any>(url, data);
   }
 
+  brikkhoSearch(number: any) {
+    return this.http.get<any>(environment.baseUrl+'/api/v1/BrikhoRegistration/search'+'?number='+ number)
+  }
+
+  deyalSearch(number: any) {
+    return this.http.get<any>(environment.baseUrl+'/api/v1/DeyalPotrikaRegistration/search'+'?number='+ number)
+  }
+
 }

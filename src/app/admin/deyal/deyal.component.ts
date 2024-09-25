@@ -27,6 +27,7 @@ export class DeyalComponent implements OnInit {
   totalRecords: number = 0;
   notificationMessage: string | null = null; // Initialize notification message
   selectedDeyal: any = []; // Ensure this property is correctly defined
+  searchQuery: string = ''; // to hold the search query
 
   constructor(private api: DataService, private toastr: ToastrService) { }
 
@@ -37,9 +38,14 @@ export class DeyalComponent implements OnInit {
   fetchData(pageNumber: number, pageSize: number): void {
     this.api.getDeyal(pageNumber, pageSize).subscribe(
       (response: any) => {
-        this.paginatedData = response.data; // Assuming 'data' is the key with the records
-        this.totalRecords = response.total; // Assuming 'total' is the key for total records
-        this.notificationMessage = this.paginatedData.length === 0 ? 'No records found!' : null;
+        if (response.success) {
+          this.paginatedData = response.data; // Assuming 'data' is the key with the records
+          this.totalRecords = response.total; // Assuming 'total' is the key for total records
+          this.notificationMessage = null;
+        } else {
+          this.notificationMessage = "No data found"; // Set notification message
+          this.paginatedData = []; // Clear paginated data if no records found
+        }
       },
       (error) => {
         console.error('Error fetching data', error);
@@ -49,7 +55,8 @@ export class DeyalComponent implements OnInit {
   }
 
   nextPage(): void {
-    if ((this.PageNumber + 1) * this.pageSize < this.totalRecords) {
+    // Allow the next page to be fetched if there are more records to show
+    if ((this.PageNumber + 1) * this.pageSize < this.totalRecords || this.totalRecords % this.pageSize !== 0) {
       this.PageNumber++;
       this.fetchData(this.PageNumber, this.pageSize);
     }
@@ -76,7 +83,7 @@ export class DeyalComponent implements OnInit {
     this.selectedDeyal.leaderName = item.leaderName;
     this.selectedDeyal.leaderNumber = item.leaderNumber;
     this.selectedDeyal.email = item.email;
-    this.selectedDeyal.whatsappNumber = item.whatsappNumber;
+    this.selectedDeyal.whatsAppNumber = item.whatsAppNumber; // Correct case
     this.selectedDeyal.isPaymentDone = item.isPaymentDone; // If needed
     this.selectedDeyal.transactionId = item.transactionId; // If needed
   }  
@@ -115,4 +122,27 @@ export class DeyalComponent implements OnInit {
       }
     );
   }
+
+  searchBrikkho(query: string): void {
+    if (query.trim()) {
+      this.api.deyalSearch(query).subscribe(
+        response => {
+          if (response.success) {
+            this.paginatedData = response.data; // Update the table data with search results
+            this.notificationMessage = null;
+          } else {
+            this.notificationMessage = "No results found for the search query.";
+            this.paginatedData = []; // Clear the table data if no results found
+          }
+        },
+        error => {
+          this.notificationMessage = "An error occurred while searching.";
+          this.toastr.error("Server error.");
+        }
+      );
+    } else {
+      this.notificationMessage = "Please enter a valid search query.";
+    }
+  }
+
 }

@@ -28,6 +28,7 @@ export class BrikkhoComponent implements OnInit {
   totalRecords: number = 0;
   notificationMessage: string | null = null; // Initialize notification message
   selectedBrikkho: any = []; // Ensure this property is correctly defined
+  searchQuery: string = ''; // Store the search query
 
   constructor(private api: DataService, private toastr: ToastrService) { }
 
@@ -104,6 +105,29 @@ export class BrikkhoComponent implements OnInit {
   refreshData() {
     this.PageNumber = 0; // Reset to the first page
     this.fetchData(this.PageNumber, this.pageSize); // Fetch data again
+  }
+
+
+  searchBrikkho(query: string): void {
+    if (query.trim()) {
+      this.api.brikkhoSearch(query).subscribe(
+        response => {
+          if (response.success) {
+            this.paginatedData = response.data; // Update the table data with search results
+            this.notificationMessage = null;
+          } else {
+            this.notificationMessage = "No results found for the search query.";
+            this.paginatedData = []; // Clear the table data if no results found
+          }
+        },
+        error => {
+          this.notificationMessage = "An error occurred while searching.";
+          this.toastr.error("Server error.");
+        }
+      );
+    } else {
+      this.notificationMessage = "Please enter a valid search query.";
+    }
   }
 
 }
