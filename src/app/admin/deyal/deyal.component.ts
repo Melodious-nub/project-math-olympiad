@@ -12,7 +12,7 @@ interface DataItem {
   whatsAppNumber: string | null;
   email: string;
   isPaymentDone: boolean;
-  transactionId: string | null;
+  bkashNumber: string | null;
 }
 
 @Component({
@@ -85,7 +85,7 @@ export class DeyalComponent implements OnInit {
     this.selectedDeyal.email = item.email;
     this.selectedDeyal.whatsAppNumber = item.whatsAppNumber; // Correct case
     this.selectedDeyal.isPaymentDone = item.isPaymentDone; // If needed
-    this.selectedDeyal.transactionId = item.transactionId; // If needed
+    this.selectedDeyal.bkashNumber = item.bkashNumber; // If needed
   }  
 
   updateDeyal(): void {
@@ -100,7 +100,7 @@ export class DeyalComponent implements OnInit {
       whatsAppNumber: this.selectedDeyal.whatsAppNumber,
       email: this.selectedDeyal.email,
       isPaymentDone: this.selectedDeyal.isPaymentDone,
-      transactionId: this.selectedDeyal.transactionId
+      bkashNumber: this.selectedDeyal.bkashNumber
     };
   
     this.api.updateDeyal(this.selectedDeyal.id, model).subscribe(

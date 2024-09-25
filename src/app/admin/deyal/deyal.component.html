@@ -24,7 +24,7 @@
               <th>WhatsApp Number</th>
               <th>Email</th>
               <th>Pay Status</th>
-              <th>Transaction ID</th>
+              <th>Bkash Number</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -44,11 +44,15 @@
                   <span *ngIf="!item.isPaymentDone" class="badge bg-danger">Not paid</span>
               </td>
               <td>
-                  <span *ngIf="item.transactionId !== null">{{ item.transactionId }}</span>
-                  <span *ngIf="item.transactionId === null">Not available</span>
+                  <span *ngIf="item.bkashNumber !== null">{{ item.bkashNumber }}</span>
+                  <span *ngIf="item.bkashNumber === null">Not available</span>
               </td>
               <td>
-                <button class="btn btn-warning btn-sm" style="padding: 2px 10px; font-size: 11px;" data-bs-toggle="modal" data-bs-target="#editDeyal" (click)="openEditModal(item)">Edit</button>
+                <div class="d-flex justify-content-center align-items-center gap-2">
+                  <button class="btn btn-warning btn-sm" style="padding: 2px 10px; font-size: 11px;" data-bs-toggle="modal" data-bs-target="#editDeyal" (click)="openEditModal(item)">Edit</button>
+
+                  <a *ngIf="!item.isPaymentDone" href="https://shop.bkash.com/rose-garden01772659356/pay/bdt250/mNSJPT" class="btn btn-success btn-sm" target="_blank" style="padding: 2px 10px; font-size: 11px;">Pay</a>
+                </div>
               </td>
             </tr>
           </tbody>
@@ -118,8 +122,8 @@
           </select>
         </div>
         <div class="col-lg-6 mb-1">
-          <label for="transactionId" class="form-label">Transaction ID</label>
-          <input [(ngModel)]="selectedDeyal.transactionId" name="transactionId" type="text" class="form-control form-control-sm" id="transactionId">
+          <label for="bkashNumber" class="form-label">Bkash Number</label>
+          <input [(ngModel)]="selectedDeyal.bkashNumber" name="bkashNumber" type="text" class="form-control form-control-sm" id="bkashNumber">
         </div>
       </form>
     </div>

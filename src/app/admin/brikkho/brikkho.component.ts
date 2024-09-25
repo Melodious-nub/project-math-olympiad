@@ -13,7 +13,7 @@ interface DataItem {
   whatsApp: string | null;
   category: string;
   isPaymentDone: boolean;
-  transactionId: string | null;
+  bkashNumber: string | null;
 }
 
 @Component({
@@ -60,12 +60,12 @@ export class BrikkhoComponent implements OnInit {
     this.selectedBrikkho.whatsApp = item.whatsApp;
     this.selectedBrikkho.category = item.category;
     this.selectedBrikkho.isPaymentDone = item.isPaymentDone;
-    this.selectedBrikkho.transactionId = item.transactionId;
+    this.selectedBrikkho.bkashNumber = item.bkashNumber;
   }
 
   updateBrikkho(): void {
     let model = {
-      name: this.selectedBrikkho.name, schoolName: this.selectedBrikkho.schoolName, district: this.selectedBrikkho.district, volunteerCode: this.selectedBrikkho.volunteerCode, volunteerName: this.selectedBrikkho.volunteerName, email: this.selectedBrikkho.email, whatsApp: this.selectedBrikkho.whatsApp, category: this.selectedBrikkho.category, isPaymentDone: this.selectedBrikkho.isPaymentDone, transactionId: this.selectedBrikkho.transactionId
+      name: this.selectedBrikkho.name, schoolName: this.selectedBrikkho.schoolName, district: this.selectedBrikkho.district, volunteerCode: this.selectedBrikkho.volunteerCode, volunteerName: this.selectedBrikkho.volunteerName, email: this.selectedBrikkho.email, whatsApp: this.selectedBrikkho.whatsApp, category: this.selectedBrikkho.category, isPaymentDone: this.selectedBrikkho.isPaymentDone, bkashNumber: this.selectedBrikkho.bkashNumber
     }
 
     this.api.updateBrikkho(this.selectedBrikkho.id, model).subscribe(

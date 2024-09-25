@@ -1,126 +1,129 @@
 <div class="container mt-4">
-    <div class="d-flex justify-content-between mb-3">
-        <h5>Manage Brikkho Registration</h5>
-        <button class="btn btn-sm btn-secondary" style="padding: 2px 10px; font-size: 11px;" (click)="refreshData()">Refresh</button>
-    </div>
+  <div class="d-flex justify-content-between mb-3">
+      <h5>Manage Brikkho Registration</h5>
+      <button class="btn btn-sm btn-secondary" style="padding: 2px 10px; font-size: 11px;" (click)="refreshData()">Refresh</button>
+  </div>
 
-    <!-- Search Bar -->
-    <form (ngSubmit)="searchBrikkho(searchQuery)" class="d-flex mb-3">
-      <input [(ngModel)]="searchQuery" name="searchQuery" type="text" class="form-control form-control-sm me-2" placeholder="Search by number..." style="font-size: 12px; padding: 4px;">
-      <button class="btn btn-sm btn-primary" type="submit" style="padding: 2px 10px; font-size: 11px;">Search</button>
-    </form>
-    
-    <div class="table-responsive-xxl" style="overflow: auto;">
-        <table class="table table-hover align-middle table-sm text-center">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>School Name</th>
-                <th>District</th>
-                <th>Volunteer Code</th>
-                <th>Volunteer Name</th>
-                <th>Email</th>
-                <th>WhatsApp</th>
-                <th>Category</th>
-                <th>Pay Status</th>
-                <th>transactionId</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of paginatedData">
-                <td>{{ item.name }}</td>
-                <td>{{ item.schoolName }}</td>
-                <td>{{ item.district }}</td>
-                <td>{{ item.volunteerCode }}</td>
-                <td>{{ item.volunteerName }}</td>
-                <td>{{ item.email }}</td>
-                <td>{{ item.whatsApp }}</td>
-                <td>{{ item.category }}</td>
-                <td>
-                    <span *ngIf="item.isPaymentDone" class="badge bg-success">Paid</span>
-                    <span *ngIf="!item.isPaymentDone" class="badge bg-danger">Not paid</span>
-                </td>
-                <td>
-                    <span *ngIf="item.transactionId !== null">{{ item.transactionId }}</span>
-                    <span *ngIf="item.transactionId === null">Not availabe</span>
-                </td>
-                <td>
-                  <button class="btn btn-warning btn-sm" style="padding: 2px 10px; font-size: 11px;" data-bs-toggle="modal" data-bs-target="#editBrikkho" (click)="openEditModal(item)">Edit</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div *ngIf="!paginatedData.length && notificationMessage" class="alert alert-warning" role="alert">
-            {{ notificationMessage }}
-        </div>
-    </div>
+  <!-- Search Bar -->
+  <form (ngSubmit)="searchBrikkho(searchQuery)" class="d-flex mb-3">
+    <input [(ngModel)]="searchQuery" name="searchQuery" type="text" class="form-control form-control-sm me-2" placeholder="Search by number..." style="font-size: 12px; padding: 4px;">
+    <button class="btn btn-sm btn-primary" type="submit" style="padding: 2px 10px; font-size: 11px;">Search</button>
+  </form>
   
-    <div class="pagination">
-        <button class="btn btn-primary btn-sm me-2" style="padding: 2px 10px; font-size: 11px;" (click)="previousPage()" [disabled]="PageNumber === 0">Previous</button>
-        <button class="btn btn-primary btn-sm" style="padding: 2px 10px; font-size: 11px;" (click)="nextPage()" [disabled]="PageNumber !== 0 && notificationMessage">Next</button>
-    </div>
+  <div class="table-responsive-xxl" style="overflow: auto;">
+      <table class="table table-hover align-middle table-sm text-center">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>School Name</th>
+              <th>District</th>
+              <th>Volunteer Code</th>
+              <th>Volunteer Name</th>
+              <th>Email</th>
+              <th>WhatsApp</th>
+              <th>Category</th>
+              <th>Pay Status</th>
+              <th>Bkash Number</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of paginatedData">
+              <td>{{ item.name }}</td>
+              <td>{{ item.schoolName }}</td>
+              <td>{{ item.district }}</td>
+              <td>{{ item.volunteerCode }}</td>
+              <td>{{ item.volunteerName }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.whatsApp }}</td>
+              <td>{{ item.category }}</td>
+              <td>
+                  <span *ngIf="item.isPaymentDone" class="badge bg-success">Paid</span>
+                  <span *ngIf="!item.isPaymentDone" class="badge bg-danger">Not Paid</span>
+              </td>
+              <td>
+                  <span *ngIf="item.bkashNumber !== null">{{ item.bkashNumber }}</span>
+                  <span *ngIf="item.bkashNumber === null">Not Available</span>
+              </td>
+              <td>
+                <div class="d-flex justify-content-center align-items-center gap-2">
+                  <button class="btn btn-warning btn-sm" style="padding: 2px 10px; font-size: 11px;" data-bs-toggle="modal" data-bs-target="#editBrikkho" (click)="openEditModal(item)">Edit</button>
+                  <a *ngIf="!item.isPaymentDone" href="https://shop.bkash.com/rose-garden01772659356/pay/bdt100/zRjmeL" class="btn btn-success btn-sm" target="_blank" style="padding: 2px 10px; font-size: 11px;">Pay</a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="!paginatedData.length && notificationMessage" class="alert alert-warning" role="alert">
+          {{ notificationMessage }}
+        </div>
+  </div>
+
+  <div class="pagination">
+      <button class="btn btn-primary btn-sm me-2" style="padding: 2px 10px; font-size: 11px;" (click)="previousPage()" [disabled]="PageNumber === 0">Previous</button>
+      <button class="btn btn-primary btn-sm" style="padding: 2px 10px; font-size: 11px;" (click)="nextPage()" [disabled]="PageNumber !== 0 && notificationMessage">Next</button>
+  </div>
 </div>
 
 <!-- Edit Brikkho Modal -->
 <div class="modal fade backdrop-ux" id="editBrikkho" tabindex="-1" aria-labelledby="editBrikkhoLabel" aria-hidden="true" data-bs-backdrop="false">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editBrikkhoLabel">Edit Brikkho Registration</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body modal-bdy">
-        <form class="row justify-content-center px-5">
-          <div class="col-lg-6 mb-1">
-            <label for="name" class="form-label">Name</label>
-            <input [(ngModel)]="selectedBrikkho.name" name="name" type="text" class="form-control form-control-sm" id="name">
-          </div>
-          <div class="col-lg-6 mb-1">
-            <label for="schoolName" class="form-label">School Name</label>
-            <input [(ngModel)]="selectedBrikkho.schoolName" name="schoolName" type="text" class="form-control form-control-sm" id="schoolName">
-          </div>
-          <div class="col-lg-6 mb-1">
-            <label for="district" class="form-label">District</label>
-            <input [(ngModel)]="selectedBrikkho.district" name="district" type="text" class="form-control form-control-sm" id="district">
-          </div>
-          <div class="col-lg-6 mb-1">
-            <label for="volunteerCode" class="form-label">Volunteer Code</label>
-            <input [(ngModel)]="selectedBrikkho.volunteerCode" name="volunteerCode" type="text" class="form-control form-control-sm" id="volunteerCode">
-          </div>
-          <div class="col-lg-6 mb-1">
-            <label for="volunteerName" class="form-label">Volunteer Name</label>
-            <input [(ngModel)]="selectedBrikkho.volunteerName" name="volunteerName" type="text" class="form-control form-control-sm" id="volunteerName">
-          </div>
-          <div class="col-lg-6 mb-1">
-            <label for="email" class="form-label">Email</label>
-            <input [(ngModel)]="selectedBrikkho.email" name="email" type="email" class="form-control form-control-sm" id="email">
-          </div>
-          <div class="col-lg-6 mb-1">
-            <label for="whatsApp" class="form-label">WhatsApp</label>
-            <input [(ngModel)]="selectedBrikkho.whatsApp" name="whatsApp" type="text" class="form-control form-control-sm" id="whatsApp">
-          </div>
-          <div class="col-lg-6 mb-1">
-            <label for="category" class="form-label">Category</label>
-            <input [(ngModel)]="selectedBrikkho.category" name="category" type="text" class="form-control form-control-sm" id="category">
-          </div>
-          <div class="col-lg-6 mb-1">
-            <label for="isPaymentDone" class="form-label">Payment Status</label>
-            <select [(ngModel)]="selectedBrikkho.isPaymentDone" name="isPaymentDone" class="form-control form-control-sm" id="isPaymentDone">
-              <option [ngValue]="true">Paid</option>
-              <option [ngValue]="false">Not Paid</option>
-            </select>
-          </div>
-          <div class="col-lg-6 mb-1">
-            <label for="transactionId" class="form-label">Transaction ID</label>
-            <input [(ngModel)]="selectedBrikkho.transactionId" name="transactionId" type="text" class="form-control form-control-sm" id="transactionId">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-sm btn-success" (click)="updateBrikkho()" data-bs-dismiss="modal">Update</button>
-      </div>
+<div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="editBrikkhoLabel">Edit Brikkho Registration</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body modal-bdy">
+      <form class="row justify-content-center px-5">
+        <div class="col-lg-6 mb-1">
+          <label for="name" class="form-label">Name</label>
+          <input [(ngModel)]="selectedBrikkho.name" name="name" type="text" class="form-control form-control-sm" id="name">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="schoolName" class="form-label">School Name</label>
+          <input [(ngModel)]="selectedBrikkho.schoolName" name="schoolName" type="text" class="form-control form-control-sm" id="schoolName">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="district" class="form-label">District</label>
+          <input [(ngModel)]="selectedBrikkho.district" name="district" type="text" class="form-control form-control-sm" id="district">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="volunteerCode" class="form-label">Volunteer Code</label>
+          <input [(ngModel)]="selectedBrikkho.volunteerCode" name="volunteerCode" type="text" class="form-control form-control-sm" id="volunteerCode">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="volunteerName" class="form-label">Volunteer Name</label>
+          <input [(ngModel)]="selectedBrikkho.volunteerName" name="volunteerName" type="text" class="form-control form-control-sm" id="volunteerName">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="email" class="form-label">Email</label>
+          <input [(ngModel)]="selectedBrikkho.email" name="email" type="email" class="form-control form-control-sm" id="email">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="whatsApp" class="form-label">WhatsApp</label>
+          <input [(ngModel)]="selectedBrikkho.whatsApp" name="whatsApp" type="text" class="form-control form-control-sm" id="whatsApp">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="category" class="form-label">Category</label>
+          <input [(ngModel)]="selectedBrikkho.category" name="category" type="text" class="form-control form-control-sm" id="category">
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="isPaymentDone" class="form-label">Payment Status</label>
+          <select [(ngModel)]="selectedBrikkho.isPaymentDone" name="isPaymentDone" class="form-control form-control-sm" id="isPaymentDone">
+            <option [ngValue]="true">Paid</option>
+            <option [ngValue]="false">Not Paid</option>
+          </select>
+        </div>
+        <div class="col-lg-6 mb-1">
+          <label for="bkashNumber" class="form-label">Bkash Number</label>
+          <input [(ngModel)]="selectedBrikkho.bkashNumber" name="bkashNumber" type="text" class="form-control form-control-sm" id="bkashNumber">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-sm btn-light" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-sm btn-success" (click)="updateBrikkho()" data-bs-dismiss="modal">Update</button>
     </div>
   </div>
+</div>
 </div>
