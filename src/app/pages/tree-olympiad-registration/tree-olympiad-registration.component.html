@@ -111,8 +111,17 @@
           </div>
         </div>
 
-        <!-- Email Field -->
+        <!-- Bkash Number Field -->
         <div class="mb-2 col-md-6">
+          <label for="bkashNumber" class="form-label">Bkash Number</label>
+          <input type="tel" id="bkashNumber" class="form-control form-control-sm" [ngClass]="{'is-invalid': !bkashNumber.valid && bkashNumber.touched}" name="bkashNumber" ngModel required #bkashNumber="ngModel">
+          <div *ngIf="!bkashNumber.valid && bkashNumber.touched" class="text-danger">
+            Bkash number is required.
+          </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="mb-2 col-md-12">
           <label for="email" class="form-label">Email</label>
           <input type="email" id="email" class="form-control form-control-sm" [ngClass]="{'is-invalid': !email.valid && email.touched}" name="email" ngModel required email #email="ngModel">
           <div *ngIf="!email.valid && email.touched" class="text-danger">
